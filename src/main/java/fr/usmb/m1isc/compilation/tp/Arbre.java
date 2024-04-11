@@ -3,22 +3,22 @@ package fr.usmb.m1isc.compilation.tp;
 public class Arbre {
     private String operator;
     private Integer value;
-    private Arbre tg, td;
+    private Arbre ag, ad;
 
     public Arbre() {}
 
-    public Arbre(String operator, Arbre tg, Arbre td){
+    public Arbre(String operator, Arbre ag, Arbre ad){
         this.operator = operator;
-        this.tg = tg;
-        this.td = td;
-        System.out.println(operator + "\n" + tg.getValue() + " " + td.getValue());
+        this.ag = ag;
+        this.ad = ad;
+        // System.out.println(operator + "\n" + ag.getValue() + " " + ad.getValue());
     }
 
-    public Arbre(Integer value, Arbre tg, Arbre td){
+    public Arbre(Integer value, Arbre ag, Arbre ad){
         this.value = value;
-        this.tg = tg;
-        this.td = td;
-        System.out.println(value + "\n" + tg.getValue() + " " + td.getValue());
+        this.ag = ag;
+        this.ad = ad;
+        // System.out.println(value + "\n" + ag.getValue() + " " + ad.getValue());
     }
 
     public Arbre(Integer value){
@@ -29,36 +29,38 @@ public class Arbre {
         this.operator = operator;
     }
 
-    public String getOperator() {
-        return operator;
-    }
-
-    public Arbre getTg() {
-        return tg;
-    }
-
-    public Arbre getTd() {
-        return td;
-    }
-
-    public Integer getValue() {
+    public Integer getValue(){
         return value;
     }
 
-    public void setOperator(String operator) {
-        this.operator = operator;
-    }
-
-    public void setTg(Arbre tg) {
-        this.tg = tg;
-    }
-
-    public void setTd(Arbre td) {
-        this.td = td;
+    public String getOperator(){
+        return operator;
     }
 
     @Override
     public String toString() {
-        return "monarbre";
+        String str = "";
+        if (!(value==null && operator==null)){
+            str += '(';
+            if (operator!=null){
+                str += " " + operator + " ";
+            }
+            else{
+                str += " " + value + " ";
+            }
+            if (ag!=null){
+                str += " ";
+                str += ag.toString();
+            }
+            if(ad != null){
+                str += " ";
+                str += ad.toString();
+            }
+            str += ')';
+            return str;
+        }
+        else{
+            return "";
+        }
     }
 }

@@ -60,7 +60,7 @@ precedence left MOINS_UNAIRE;
 /* grammaire */
 // un pg est une sequence d'insctions terminee par point
 program ::=
-    sequence:s POINT  {: RESULT = s; :}
+    sequence:s  {: System.out.println(s.toString()); :} POINT
     | sequence:s {: RESULT = s; :}
     ;
 
@@ -75,7 +75,6 @@ expression ::= expr:e {: RESULT = e; :}
              | LET IDENT:nom EGAL expr:e {: RESULT = new Arbre("let",new Arbre(new String(nom)), e); :}
              | WHILE expr:cond DO expression:e {: RESULT = new Arbre("while",cond, e); :}
              | IF expr:cond THEN expression:a1 ELSE expression:a2 {: RESULT = new Arbre("if",cond, new Arbre("then",a1,a2)); :}
-             | expr:cond IFTERN expression:a1 ELSETERN expression:a2 {: RESULT = new Arbre("if",cond, new Arbre("then",a1,a2)); :}
              | error // reprise d'erreurs
              ;
 
@@ -86,8 +85,6 @@ expr ::= NOT:op expr:e {: RESULT = new Arbre("not",e,null); :}
        | expr:e1 EGAL expr:e2 {: RESULT = new Arbre("=",e1,e2); :}
        | expr:e1 GT expr:e2 {: RESULT = new Arbre(">",e1,e2); :}
        | expr:e1 GTE expr:e2 {: RESULT = new Arbre(">=",e1,e2); :}
-       | expr:e1 LT expr:e2 {: RESULT = new Arbre("<",e1,e2); :}
-       | expr:e1 LTE expr:e2 {: RESULT = new Arbre("<=",e1,e2); :}
        | expr:e1 PLUS expr:e2 {: RESULT = new Arbre("+",e1,e2); :}
        | expr:e1 MOINS expr:e2 {: RESULT = new Arbre("-",e1,e2); :}
        | expr:e1 MUL expr:e2 {: RESULT = new Arbre("*",e1,e2); :}

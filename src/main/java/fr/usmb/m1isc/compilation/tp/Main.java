@@ -16,8 +16,6 @@ public class Main {
 	@SuppressWarnings("deprecation")
 	parser p = new parser (yy);
 	Symbol s = p.parse( );
-	System.out.println(s.value);
-	//test
     }
 
 }
