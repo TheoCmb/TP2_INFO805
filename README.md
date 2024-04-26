@@ -16,7 +16,8 @@ Generation de l'arbre :
 
 Generation du code assembleur :
 
-```DATA SEGMENT
+```
+DATA SEGMENT
         prixHt DD
         prixTtc DD
 DATA ENDS
@@ -34,7 +35,8 @@ CODE SEGMENT
         mov eax, ebx
         mov prixTtc, eax
         push eax
-CODE ENDS```
+CODE ENDS
+```
 
 ```>>> 9*5+3*6;.```
 
@@ -44,7 +46,8 @@ Generation de l'arbre :
 
 Generation du code assembleur :
 
-```DATA SEGMENT
+```
+DATA SEGMENT
 DATA ENDS
 CODE SEGMENT
         mov eax, 5
@@ -56,4 +59,5 @@ CODE SEGMENT
         mov eax, null
         pop eax
         add eax, ebx
-CODE ENDS```
+CODE ENDS
+```
