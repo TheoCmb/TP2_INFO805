@@ -1,7 +1,7 @@
 # TP234_INFO805
 ### COMBE Théo
 
-#### Ce repositorie sert de rendu pour les 3 TP.
+#### Ce repositorie sert de rendu pour les 3 TP (l'exercice 2 du I805_TP34_Lambada n'a pas été traité).
 
 ##### Voici 2 exemples de simulation :
 
