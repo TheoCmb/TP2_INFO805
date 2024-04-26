@@ -5,6 +5,8 @@
 
 ##### Voici 2 exemples de simulation :
 
+## Exemple 1 :
+
 ```>>> let prixHt = 200; let prixTtc =  prixHt * 119 / 100 .```
 
 let prixHt = 200;
@@ -37,6 +39,8 @@ CODE SEGMENT
         push eax
 CODE ENDS
 ```
+
+## Exemple 2 :
 
 ```>>> 9*5+3*6;.```
 
