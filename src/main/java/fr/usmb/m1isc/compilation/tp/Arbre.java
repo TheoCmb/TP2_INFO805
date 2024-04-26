@@ -90,19 +90,75 @@ public class Arbre {
 
     public String getAssembleurPart(){
         String res = "";
-        switch (operator) {
-            case "+":
-                res += ag.getAssembleurPart();
-                res += ad.getAssembleurPart();
-                res += "\npop ebx";
-                res += "\npop eax";
-                res += "\nadd eax, ebx";
-                res += "\npush eax";
-                break;
-        
-            default:
-                res += "\nmov eax, " + ag.getValue();
-                break;
+        // System.out.println("operator : " + operator);
+        // System.out.println("value : " + value);
+        // System.out.println("ag : " + ag);
+        // System.out.println("ad : " + ad);
+        if (operator!=null){
+            switch (operator) {
+                case ";":
+                    res += ag.getAssembleurPart();
+                    if (ad!=null){
+                        res += ad.getAssembleurPart();
+                    }
+                    break;
+                case "+":
+                    res += ag.getAssembleurPart();
+                    res += ad.getAssembleurPart();
+                    res += "\n\tmov eax, " + ad.getValue();
+                    res += "\n\tpop eax";
+                    res += "\n\tadd eax, ebx";
+                    // res += "\n\tpush eax";
+                    break;
+                case "-":
+                    res += ag.getAssembleurPart();
+                    res += ad.getAssembleurPart();
+                    res += "\n\tmov eax, " + ad.getValue();
+                    res += "\n\tpop eax";
+                    res += "\n\tsub eax, ebx";
+                    break;
+                case "*":
+                    res += ag.getAssembleurPart();
+                    res += ad.getAssembleurPart();
+                    res += "\n\tmov eax, " + ad.getValue();
+                    res += "\n\tpop ebx";
+                    res += "\n\tmul eax, ebx";
+                    break;
+                case "/":
+                    res += ag.getAssembleurPart();
+                    res += ad.getAssembleurPart();
+                    res += "\n\tmov eax, " + ad.getValue();
+                    res += "\n\tpop ebx";
+                    res += "\n\tdiv eax, ebx";
+                    break;
+                case "%":
+                    res += ag.getAssembleurPart();
+                    res += ad.getAssembleurPart();
+                    res += "\n\tmov eax, " + ad.getValue();
+                    res += "\n\tpop eax";
+                    res += "\n\tdiv ebx, eax";
+                    break;
+                case "let":
+                    res += ad.getAssembleurPart();
+                    if (ad.getValue()!=null){
+                        res += "\n\tmov eax, " + ad.getValue();
+                    }
+                    else{
+                        res += "\n\tmov eax, ebx";
+                    }
+                    res += "\n\tmov " + ag.getOperator() + ", eax";
+                    res += "\n\tpush eax";
+                    break;
+                default:
+                    if (operator!=null){
+                        res += "\n\tmov eax, " + operator;
+                    }
+                    else{
+                        res += "\n\tmov eax, " + value;
+                    }
+                    // res += "\n\tpush eax";
+                    break;
+            }         
         }
         return res;
     }
@@ -117,8 +173,9 @@ public class Arbre {
             str += " DD\n";
         }
         // System.out.println("size : " + varlet.size());
-        str += "DATA ENDS\nCODE SEGMENT\n";
+        str += "DATA ENDS\nCODE SEGMENT";
         str += getAssembleurPart();
+        str += "\nCODE ENDS\n";
         return str;
     }
 
